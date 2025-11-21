@@ -1,0 +1,5 @@
+#screen-welcome {
+    position: absolute;
+    width: calc(100% - 100px);
+    height: 900px;
+}

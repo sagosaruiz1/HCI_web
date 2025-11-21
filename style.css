@@ -1,0 +1,79 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+:root {
+    --primary: #53a5e0;
+    --light: #aad3f0; 
+    --dark: #111827;
+}
+
+html, body {
+    display: grid;
+}
+
+
+.container {
+    background-color: var(--dark);
+    background-image: url('assets/oooscillate.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.landing {
+    border-radius: 20px;
+    background: linear-gradient(213deg,rgba(29, 40, 56, 1) 0%, rgba(170, 211, 240, 1) 50%, rgba(33, 50, 87, 1) 100%);
+    border: 1px solid;
+    width: 300px;
+    height: 400px;
+    text-align: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+button {
+    padding: 9px 15px;
+    border: none;
+    border-radius: 25px;
+    margin: 50px 0 0 0;
+    background-color: var(--dark);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:active {
+    opacity: 0.9;
+}
+
+.title {
+    margin: 20px;
+    color: #fff;
+    font-weight: bold;
+    border-bottom: 1px solid var(--dark);
+    display: flex;
+    align-items: center;
+    padding: 0 0 5px 0;
+}
+
+svg, title {
+    margin-left: 30px;
+}
+svg {
+    width: 50px;
+    height: 50;
+}
+
+p {
+    margin: 20px 0 50px 0;
+    color: #ffffff;
+}

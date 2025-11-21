@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="svg" href="assets/ssshape.svg">
+  <title>Anki</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <script src="login-script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="app" class="container">
+    <!-- 1. Login Screen -->
+    <section id="screen-login" class="screen active">
+      <h2 class="title">Login</h2>
+      <form id="login-form" onsubmit="handleLogin(event)" class="form">
+        <div id="login-error-box" class="error-box hidden" role="alert">
+          <strong>Error!</strong>
+          <span id="login-error-message"></span>
+        </div>
+        <div class="form-group">
+          <label for="login-email">Email address</label>
+          <input type="email" id="login-email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" placeholder="••••••••" required />
+        </div>
+        <div class="flex-row space-between">
+          <a href="#" onclick="showSimulatedMessage('Password reset link sent to your email (simulated).'); return false;" class="link">
+            Forgot Password?
+          </a>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign In</button>
+      </form>
+      <p class="text-center small-text">
+        Don't have an account?
+        <a href="#" onclick="goToScreen('register_step1'); return false;" class="link">
+          Start your free trial
+        </a>
+      </p>
+    </section>
+
+    <!-- 2. Register Steps -->
+
+    <!-- Step 1 -->
+    <section id="screen-register_step1" class="screen">
+      <h2 class="title">Create Account (1/3)</h2>
+      <p class="subtitle">Let's start with your basic info.</p>
+      <form id="register-step1-form" onsubmit="handleRegistrationStep(event, 1)" class="form">
+        <div class="form-group">
+          <label for="reg-name">Full Name</label>
+          <input type="text" id="reg-name" placeholder="Jane Doe" required />
+        </div>
+        <div class="form-group">
+          <label for="reg-email">Email Address</label>
+          <input type="email" id="reg-email" placeholder="you@newuser.com" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Next Step</button>
+        <button type="button" onclick="goToScreen('login');" class="btn btn-secondary">← Back to Sign In</button>
+      </form>
+    </section>
+
+    <!-- Step 2 -->
+    <section id="screen-register_step2" class="screen">
+      <h2 class="title">Password Setup (2/3)</h2>
+      <p class="subtitle">Choose a strong password.</p>
+      <form id="register-step2-form" onsubmit="handleRegistrationStep(event, 2)" class="form">
+        <div id="password-error-box" class="error-box warning hidden" role="alert">
+          <strong>Heads up!</strong>
+          <span>Passwords do not match.</span>
+        </div>
+        <div class="form-group">
+          <label for="reg-password">Password</label>
+          <input type="password" id="reg-password" placeholder="••••••••" required />
+        </div>
+        <div class="form-group">
+          <label for="reg-confirm-password">Confirm Password</label>
+          <input type="password" id="reg-confirm-password" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Next Step</button>
+        <button type="button" onclick="goToScreen('register_step1');" class="btn btn-secondary">← Back</button>
+      </form>
+    </section>
+
+    <!-- Step 3 -->
+    <section id="screen-register_step3" class="screen">
+      <h2 class="title">Finalizing (3/3)</h2>
+      <p class="subtitle">Almost done! Just confirm the terms.</p>
+      <form id="register-step3-form" onsubmit="handleRegistrationStep(event, 3)" class="form">
+        <div class="checkbox-group">
+          <input id="terms-checkbox" name="terms" type="checkbox" required />
+          <label for="terms-checkbox" class="checkbox-label">
+            I agree to the <a href="#" class="link">Terms of Service</a> and Privacy Policy.
+          </label>
+        </div>
+        <button type="submit" class="btn btn-success">Complete Registration</button>
+        <button type="button" onclick="goToScreen('register_step2');" class="btn btn-secondary">← Back</button>
+      </form>
+    </section>
+
+    <!-- 3. Welcome Screen -->
+    <section id="screen-welcome" class="screen">
+      <svg class="icon-success" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <h2 class="title">Welcome, <span id="welcome-user-name">User</span>!</h2>
+      <p class="subtitle">You have successfully logged in/registered.</p>
+      <p class="small-text">This is your main dashboard placeholder.</p>
+      <button onclick="goToScreen('login', true);" class="btn btn-secondary btn-wide">Proceed</button>
+    </section>
+
+    <!-- Message Modal -->
+    <div id="message-box" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="message-box-title">
+      <div class="modal-content">
+        <h3 id="message-box-title" class="modal-title">Notification</h3>
+        <p id="message-content"></p>
+        <button onclick="hideSimulatedMessage()" class="btn btn-primary btn-wide">OK</button>
+      </div>
+    </div>
+  </div>
+  <div class="loader"></div>
+</body>
+</html>
+
